@@ -15,7 +15,7 @@
         </a>
         <ul aria-expanded="false">
           <li><a href="./add-course.php">Add Course</a></li>
-          <li><a href="#">Manage Courses</a></li>
+          <li><a href="./view-courses.php">Manage Courses</a></li>
         </ul>
       </li>
       <li>
@@ -24,8 +24,8 @@
           <span class="nav-text"> Students</span>
         </a>
         <ul aria-expanded="false">
-          <li><a href="#">Add Students</a></li>
-          <li><a href="#">Manage Students</a></li>
+          <li><a href="./add-student.php">Add Students</a></li>
+          <li><a href="./view-students.php">Manage Students</a></li>
         </ul>
       </li>
       <li>
@@ -34,8 +34,8 @@
           <span class="nav-text"> Lecturers</span>
         </a>
         <ul aria-expanded="false">
-          <li><a href="#">Add Lecturers</a></li>
-          <li><a href="#">Manage Lecturers</a></li>
+          <li><a href="./add-lecturer.php">Add Lecturers</a></li>
+          <li><a href="./view-lecturers.php">Manage Lecturers</a></li>
         </ul>
       </li>
 
@@ -46,8 +46,8 @@
           <span class="nav-text"> Results</span>
         </a>
         <ul aria-expanded="false">
-          <li><a href="#">Add Results</a></li>
-          <li><a href="#">Manage Results</a></li>
+          <!-- <li><a href="#">Add Results</a></li> -->
+          <li><a href="./view-results.php">Manage Results</a></li>
         </ul>
       </li>
 

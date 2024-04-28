@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Caleb Result Managment System</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link href="../../assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -17,7 +17,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <?php include_once('../includes/preloader.php'); ?>
+    <?php include_once('../../includes/preloader.php'); ?>
     <!--*******************
         Preloader end
     ********************-->
@@ -31,7 +31,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include_once('../includes/nav-header.php') ?>
+        <?php include_once('../../includes/nav-header.php') ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -39,7 +39,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <?php include_once('../includes/header.php'); ?>
+        <?php include_once('../../includes/header.php'); ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -47,7 +47,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <?php include_once('../includes/sidebar.php'); ?>
+        <?php include_once('../../includes/sidebar.php'); ?>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -79,7 +79,7 @@
                                 <div class="photo-content">
                                     <div class="cover-photo"></div>
                                     <div class="profile-photo">
-                                        <img src="../assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                        <img src="../../assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div>
                                 <div class="profile-info">
@@ -136,7 +136,7 @@
                                 </div>
                                 <div class="profile-blog pt-3 border-bottom-1 pb-1">
                                     <h5 class="text-primary d-inline">Today Highlights</h5><a href="javascript:void()" class="pull-right f-s-16">More</a>
-                                    <img src="../assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
+                                    <img src="../../assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
                                     <h4>Darwin Creative Agency Theme</h4>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                                 </div>
@@ -145,25 +145,25 @@
                                     <div class="row mt-4">
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="../assets/images/profile/2.jpg" alt="" class="img-fluid">
+                                                <img src="../../assets/images/profile/2.jpg" alt="" class="img-fluid">
                                                 <p>Shopping Mall</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="../assets/images/profile/3.jpg" alt="" class="img-fluid">
+                                                <img src="../../assets/images/profile/3.jpg" alt="" class="img-fluid">
                                                 <p>Photography</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="../assets/images/profile/4.jpg" alt="" class="img-fluid">
+                                                <img src="../../assets/images/profile/4.jpg" alt="" class="img-fluid">
                                                 <p>Art &amp; Gallery</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="../assets/images/profile/2.jpg" alt="" class="img-fluid">
+                                                <img src="../../assets/images/profile/2.jpg" alt="" class="img-fluid">
                                                 <p>Visiting Place</p>
                                             </a>
                                         </div>
@@ -175,7 +175,7 @@
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="../assets/images/profile/4.jpg" alt="" class="img-fluid">
+                                                <img src="../../assets/images/profile/4.jpg" alt="" class="img-fluid">
                                                 <p>Biking</p>
                                             </a>
                                         </div>
@@ -184,21 +184,21 @@
                                 <div class="profile-news mt-4 pb-3">
                                     <h5 class="text-primary d-inline">Our Latest News</h5>
                                     <div class="media pt-3 pb-3">
-                                        <img src="../assets/images/profile/5.jpg" alt="image" class="mr-3">
+                                        <img src="../../assets/images/profile/5.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
                                         </div>
                                     </div>
                                     <div class="media pt-3 pb-3">
-                                        <img src="../assets/images/profile/6.jpg" alt="image" class="mr-3">
+                                        <img src="../../assets/images/profile/6.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
                                         </div>
                                     </div>
                                     <div class="media pt-3 pb-3">
-                                        <img src="../assets/images/profile/7.jpg" alt="image" class="mr-3">
+                                        <img src="../../assets/images/profile/7.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
@@ -229,7 +229,7 @@
                                                         <a href="javascript:void()"><i class="ti-camera"></i> </a><a href="javascript:void()" class="btn btn-primary">Post</a>
                                                     </div>
                                                     <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                        <img src="../assets/images/profile/8.jpg" alt="" class="img-fluid">
+                                                        <img src="../../assets/images/profile/8.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
@@ -239,7 +239,7 @@
                                                         <button class="btn btn-secondary"><span class="mr-3"><i class="fa fa-reply"></i></span>Reply</button>
                                                     </div>
                                                     <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                        <img src="../assets/images/profile/9.jpg" alt="" class="img-fluid">
+                                                        <img src="../../assets/images/profile/9.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
@@ -249,7 +249,7 @@
                                                         <button class="btn btn-secondary"><span class="mr-3"><i class="fa fa-reply"></i></span>Reply</button>
                                                     </div>
                                                     <div class="profile-uoloaded-post pb-5">
-                                                        <img src="../assets/images/profile/8.jpg" alt="" class="img-fluid">
+                                                        <img src="../../assets/images/profile/8.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
@@ -406,7 +406,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <?php include_once('../includes/footer.php'); ?>
+        <?php include_once('../../includes/footer.php'); ?>
         <!--**********************************
             Footer end
         ***********************************-->
@@ -420,9 +420,9 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../assets/vendor/global/global.min.js"></script>
-    <script src="../assets/js/quixnav-init.js"></script>
-    <script src="../assets/js/custom.min.js"></script>
+    <script src="../../assets/vendor/global/global.min.js"></script>
+    <script src="../../assets/js/quixnav-init.js"></script>
+    <script src="../../assets/js/custom.min.js"></script>
 
 
 </body>

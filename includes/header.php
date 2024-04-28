@@ -4,14 +4,8 @@
       <div class="collapse navbar-collapse justify-content-between">
         <div class="header-left">
           <div class="search_bar dropdown">
-            <span class="search_icon p-3 c-pointer" data-toggle="dropdown">
-              <i class="mdi mdi-magnify"></i>
-            </span>
-            <div class="dropdown-menu p-0 m-0">
-              <form>
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-              </form>
-            </div>
+            <p>Hi there</p>
+
           </div>
         </div>
 
@@ -21,7 +15,7 @@
               <i class="mdi mdi-bell"></i>
               <div class="pulse-css"></div>
             </a>
-            <?php include_once('./includes/header-notification-dropdown.php'); ?>
+            <?php include_once('../../includes/header-notification-dropdown.php'); ?>
           </li>
           <li class="nav-item dropdown header-profile">
             <a class="nav-link" href="#" role="button" data-toggle="dropdown">
@@ -32,7 +26,7 @@
                 <i class="icon-user"></i>
                 <span class="ml-2">Profile </span>
               </a>
-              <a href="../index.php" class="dropdown-item">
+              <a href="../actions/process_logout.php" class="dropdown-item">
                 <i class="icon-key"></i>
                 <span class="ml-2">Logout </span>
               </a>

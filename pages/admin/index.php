@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Caleb Result Managment System</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <link href="../assets/vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
-    <link href="../assets/vendor/chartist/css/chartist.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link href="../../assets/vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="../../assets/vendor/chartist/css/chartist.min.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -20,7 +20,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <?php include_once('../includes/preloader.php'); ?>
+    <?php include_once('../../includes/preloader.php'); ?>
     <!--*******************
         Preloader end
     ********************-->
@@ -34,7 +34,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include_once('../includes/nav-header.php') ?>
+        <?php include_once('../../includes/nav-header.php') ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -42,7 +42,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <?php include_once('../includes/header.php'); ?>
+        <?php include_once('../../includes/header.php'); ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -50,7 +50,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <?php include_once('../includes/sidebar.php'); ?>
+        <?php include_once('../../includes/sidebar.php'); ?>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -354,7 +354,7 @@
                                 <div class="recent-comment m-t-15">
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="../assets/images/avatar/4.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/4.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-primary">john doe</h4>
@@ -364,7 +364,7 @@
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./assets./images/avatar/2.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/2.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-success">Mr. John</h4>
@@ -374,7 +374,7 @@
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="../assets/images/avatar/3.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/3.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-danger">Mr. John</h4>
@@ -384,7 +384,7 @@
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="../assets/images/avatar/4.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/4.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-primary">john doe</h4>
@@ -394,7 +394,7 @@
                                     </div>
                                     <div class="media">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="../assets/images/avatar/2.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/2.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-success">Mr. John</h4>
@@ -404,7 +404,7 @@
                                     </div>
                                     <div class="media no-border">
                                         <div class="media-left">
-                                            <a href="#"><img class="media-object mr-3" src="./assets./images/avatar/3.png" alt="..."></a>
+                                            <a href="#"><img class="media-object mr-3" src="../../assets/images/avatar/3.png" alt="..."></a>
                                         </div>
                                         <div class="media-body">
                                             <h4 class="media-heading text-info">Mr. John</h4>
@@ -669,7 +669,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <?php include_once('../includes/footer.php'); ?>
+        <?php include_once('../../includes/footer.php'); ?>
         <!--**********************************
             Footer end
         ***********************************-->
@@ -683,17 +683,17 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="../assets/vendor/global/global.min.js"></script>
-    <script src="../assets/js/quixnav-init.js"></script>
-    <script src="../assets/js/custom.min.js"></script>
+    <script src="../../assets/vendor/global/global.min.js"></script>
+    <script src="../../assets/js/quixnav-init.js"></script>
+    <script src="../../assets/js/custom.min.js"></script>
 
-    <script src="../assets/vendor/chartist/js/chartist.min.js"></script>
+    <script src="../../assets/vendor/chartist/js/chartist.min.js"></script>
 
-    <script src="../assets/vendor/moment/moment.min.js"></script>
-    <script src="../assets/vendor/pg-calendar/js/pignose.calendar.min.js"></script>
+    <script src="../../assets/vendor/moment/moment.min.js"></script>
+    <script src="../../assets/vendor/pg-calendar/js/pignose.calendar.min.js"></script>
 
 
-    <script src="../assets/js/dashboard/dashboard-2.js"></script>
+    <script src="../../assets/js/dashboard/dashboard-2.js"></script>
     <!-- Circle progress -->
 
 </body>
