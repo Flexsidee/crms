@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Focus - Bootstrap Admin Dashboard </title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
-    <link href="./css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link href="../assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -17,13 +17,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <div id="preloader">
-        <div class="sk-three-bounce">
-            <div class="sk-child sk-bounce1"></div>
-            <div class="sk-child sk-bounce2"></div>
-            <div class="sk-child sk-bounce3"></div>
-        </div>
-    </div>
+    <?php include_once('../includes/preloader.php'); ?>
     <!--*******************
         Preloader end
     ********************-->
@@ -37,19 +31,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <div class="nav-header">
-            <a href="index.html" class="brand-logo">
-                <img class="logo-abbr" src="./images/logo.png" alt="">
-                <img class="logo-compact" src="./images/logo-text.png" alt="">
-                <img class="brand-title" src="./images/logo-text.png" alt="">
-            </a>
-
-            <div class="nav-control">
-                <div class="hamburger">
-                    <span class="line"></span><span class="line"></span><span class="line"></span>
-                </div>
-            </div>
-        </div>
+        <?php include_once('../includes/nav-header.php') ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -57,7 +39,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <?php include_once('./includes/header.php'); ?>
+        <?php include_once('../includes/header.php'); ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -65,7 +47,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-            <?php include_once('./includes/sidebar.php'); ?>
+        <?php include_once('../includes/sidebar.php'); ?>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -97,7 +79,7 @@
                                 <div class="photo-content">
                                     <div class="cover-photo"></div>
                                     <div class="profile-photo">
-                                        <img src="images/profile/profile.png" class="img-fluid rounded-circle" alt="">
+                                        <img src="../assets/images/profile/profile.png" class="img-fluid rounded-circle" alt="">
                                     </div>
                                 </div>
                                 <div class="profile-info">
@@ -154,7 +136,7 @@
                                 </div>
                                 <div class="profile-blog pt-3 border-bottom-1 pb-1">
                                     <h5 class="text-primary d-inline">Today Highlights</h5><a href="javascript:void()" class="pull-right f-s-16">More</a>
-                                    <img src="images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
+                                    <img src="../assets/images/profile/1.jpg" alt="" class="img-fluid mt-4 mb-4 w-100">
                                     <h4>Darwin Creative Agency Theme</h4>
                                     <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                                 </div>
@@ -163,37 +145,37 @@
                                     <div class="row mt-4">
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/2.jpg" alt="" class="img-fluid">
+                                                <img src="../assets/images/profile/2.jpg" alt="" class="img-fluid">
                                                 <p>Shopping Mall</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/3.jpg" alt="" class="img-fluid">
+                                                <img src="../assets/images/profile/3.jpg" alt="" class="img-fluid">
                                                 <p>Photography</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/4.jpg" alt="" class="img-fluid">
+                                                <img src="../assets/images/profile/4.jpg" alt="" class="img-fluid">
                                                 <p>Art &amp; Gallery</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/2.jpg" alt="" class="img-fluid">
+                                                <img src="../assets/images/profile/2.jpg" alt="" class="img-fluid">
                                                 <p>Visiting Place</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/3.jpg" alt="" class="img-fluid">
+                                                <img src="i./assets/mages/profile/3.jpg" alt="" class="img-fluid">
                                                 <p>Shopping</p>
                                             </a>
                                         </div>
                                         <div class="col-lg-4 col-xl-4 col-sm-4 col-6 int-col">
                                             <a href="javascript:void()" class="interest-cat">
-                                                <img src="images/profile/4.jpg" alt="" class="img-fluid">
+                                                <img src="../assets/images/profile/4.jpg" alt="" class="img-fluid">
                                                 <p>Biking</p>
                                             </a>
                                         </div>
@@ -202,21 +184,21 @@
                                 <div class="profile-news mt-4 pb-3">
                                     <h5 class="text-primary d-inline">Our Latest News</h5>
                                     <div class="media pt-3 pb-3">
-                                        <img src="images/profile/5.jpg" alt="image" class="mr-3">
+                                        <img src="../assets/images/profile/5.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
                                         </div>
                                     </div>
                                     <div class="media pt-3 pb-3">
-                                        <img src="images/profile/6.jpg" alt="image" class="mr-3">
+                                        <img src="../assets/images/profile/6.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
                                         </div>
                                     </div>
                                     <div class="media pt-3 pb-3">
-                                        <img src="images/profile/7.jpg" alt="image" class="mr-3">
+                                        <img src="../assets/images/profile/7.jpg" alt="image" class="mr-3">
                                         <div class="media-body">
                                             <h5 class="m-b-5">John Tomas</h5>
                                             <p>I shared this on my fb wall a few months back, and I thought I'd share it here again because it's such a great read</p>
@@ -244,44 +226,37 @@
                                                 <div class="my-post-content pt-3">
                                                     <div class="post-input">
                                                         <textarea name="textarea" id="textarea" cols="30" rows="5" class="form-control bg-transparent" placeholder="Please type what you want...."></textarea> <a href="javascript:void()"><i class="ti-clip"></i> </a>
-                                                        <a
-                                                            href="javascript:void()"><i class="ti-camera"></i> </a><a href="javascript:void()" class="btn btn-primary">Post</a>
+                                                        <a href="javascript:void()"><i class="ti-camera"></i> </a><a href="javascript:void()" class="btn btn-primary">Post</a>
                                                     </div>
                                                     <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                        <img src="images/profile/8.jpg" alt="" class="img-fluid">
+                                                        <img src="../assets/images/profile/8.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
                                                         <p>A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
                                                             of spare which enjoy whole heart.</p>
-                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                                    class="fa fa-heart"></i></span>Like</button>
-                                                        <button class="btn btn-secondary"><span class="mr-3"><i
-                                                                    class="fa fa-reply"></i></span>Reply</button>
+                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i class="fa fa-heart"></i></span>Like</button>
+                                                        <button class="btn btn-secondary"><span class="mr-3"><i class="fa fa-reply"></i></span>Reply</button>
                                                     </div>
                                                     <div class="profile-uoloaded-post border-bottom-1 pb-5">
-                                                        <img src="images/profile/9.jpg" alt="" class="img-fluid">
+                                                        <img src="../assets/images/profile/9.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
                                                         <p>A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
                                                             of spare which enjoy whole heart.</p>
-                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                                    class="fa fa-heart"></i></span>Like</button>
-                                                        <button class="btn btn-secondary"><span class="mr-3"><i
-                                                                    class="fa fa-reply"></i></span>Reply</button>
+                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i class="fa fa-heart"></i></span>Like</button>
+                                                        <button class="btn btn-secondary"><span class="mr-3"><i class="fa fa-reply"></i></span>Reply</button>
                                                     </div>
                                                     <div class="profile-uoloaded-post pb-5">
-                                                        <img src="images/profile/8.jpg" alt="" class="img-fluid">
+                                                        <img src="../assets/images/profile/8.jpg" alt="" class="img-fluid">
                                                         <a class="post-title" href="javascript:void()">
                                                             <h4>Collection of textile samples lay spread</h4>
                                                         </a>
                                                         <p>A wonderful serenity has take possession of my entire soul like these sweet morning of spare which enjoy whole heart.A wonderful serenity has take possession of my entire soul like these sweet morning
                                                             of spare which enjoy whole heart.</p>
-                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i
-                                                                    class="fa fa-heart"></i></span>Like</button>
-                                                        <button class="btn btn-secondary"><span class="mr-3"><i
-                                                                    class="fa fa-reply"></i></span>Reply</button>
+                                                        <button class="btn btn-primary mr-3"><span class="mr-3"><i class="fa fa-heart"></i></span>Like</button>
+                                                        <button class="btn btn-secondary"><span class="mr-3"><i class="fa fa-reply"></i></span>Reply</button>
                                                     </div>
                                                     <div class="text-center mb-2"><a href="javascript:void()" class="btn btn-primary">Load More</a>
                                                     </div>
@@ -307,11 +282,8 @@
                                                     <a href="javascript:void()" class="btn btn-outline-dark btn-rounded pl-4 my-3 my-sm-0 pr-4 mr-3 m-b-10">Crypto</a>
                                                 </div>
                                                 <div class="profile-lang pt-5 border-bottom-1 pb-5">
-                                                    <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()" class="text-muted pr-3 f-s-16"><i
-                                                            class="flag-icon flag-icon-us"></i> English</a> <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i
-                                                            class="flag-icon flag-icon-fr"></i> French</a>
-                                                    <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i
-                                                            class="flag-icon flag-icon-bd"></i> Bangla</a>
+                                                    <h4 class="text-primary mb-4">Language</h4><a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-us"></i> English</a> <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-fr"></i> French</a>
+                                                    <a href="javascript:void()" class="text-muted pr-3 f-s-16"><i class="flag-icon flag-icon-bd"></i> Bangla</a>
                                                 </div>
                                                 <div class="profile-personal-info">
                                                     <h4 class="text-primary mb-4">Personal Information</h4>
@@ -434,33 +406,24 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <?php include_once('./includes/footer.php'); ?>
+        <?php include_once('../includes/footer.php'); ?>
         <!--**********************************
             Footer end
         ***********************************-->
-
-        <!--**********************************
-           Support ticket button start
-        ***********************************-->
-
-        <!--**********************************
-           Support ticket button end
-        ***********************************-->
-
-        
     </div>
     <!--**********************************
         Main wrapper end
     ***********************************-->
 
+
     <!--**********************************
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="./vendor/global/global.min.js"></script>
-    <script src="./js/quixnav-init.js"></script>
-    <script src="./js/custom.min.js"></script>
-    
+    <script src="../assets/vendor/global/global.min.js"></script>
+    <script src="../assets/js/quixnav-init.js"></script>
+    <script src="../assets/js/custom.min.js"></script>
+
 
 </body>
 

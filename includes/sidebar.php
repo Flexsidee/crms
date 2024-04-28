@@ -3,7 +3,7 @@
     <ul class="metismenu" id="menu">
       <li class="nav-label first">Main Menu</li>
       <li>
-        <a href="index.php" aria-expanded="false">
+        <a href="./index.php" aria-expanded="false">
           <i class="icon icon-app-store"></i>
           <span class="nav-text">Dashboard</span>
         </a>
@@ -53,7 +53,7 @@
 
       <li class="nav-label">Profile</li>
       <li>
-        <a href="profile.php" aria-expanded="false">
+        <a href="./profile.php" aria-expanded="false">
           <i class="icon icon-single-04"></i>
           <span class="nav-text">Profile</span>
         </a>
