@@ -14,7 +14,7 @@
           <span class="nav-text">Courses</span>
         </a>
         <ul aria-expanded="false">
-          <li><a href="#">Add Course</a></li>
+          <li><a href="./add-course.php">Add Course</a></li>
           <li><a href="#">Manage Courses</a></li>
         </ul>
       </li>
