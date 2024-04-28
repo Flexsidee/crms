@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+//check if student is logged in
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 1) {
+    //Redirect to login page if not logged in
+    header("Location: ../../index.php?error=You%20need%20to%20login%20to%20acces%20this%20website");
+    exit();
+}
+
+// Include the database connection file
+include_once('../../configs/db_connection.php');
+
+// Get the student's details from the session
+$adminId = $_SESSION['user_id'];
+$sql = "SELECT * FROM admin WHERE user_id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $adminId);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Check if a record exists
+if ($result->num_rows == 1) {
+    $admin = $result->fetch_assoc();
+
+    // Assign the admin's details to variables
+    $adminEmail = $admin['email'];
+} else {
+    // No record found, redirect back with an error message
+    header("Location: ../index.php?error=User%20not%20found");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +94,7 @@
                 <div class="row page-titles mx-0">
                     <div class="col-sm-6 p-md-0">
                         <div class="welcome-text">
-                            <h4>Hi, welcome back!</h4>
+                            <h4>Hi, welcome <?php echo $adminEmail ?>!</h4>
                             <p class="mb-0">Your business dashboard template</p>
                         </div>
                     </div>

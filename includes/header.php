@@ -26,7 +26,7 @@
                 <i class="icon-user"></i>
                 <span class="ml-2">Profile </span>
               </a>
-              <a href="../actions/process_logout.php" class="dropdown-item">
+              <a href="../../actions/process_logout.php" class="dropdown-item">
                 <i class="icon-key"></i>
                 <span class="ml-2">Logout </span>
               </a>
