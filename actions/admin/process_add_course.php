@@ -24,13 +24,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $requirement = test_input($_POST['requirement']);
 
     // Prepare SQL statement to insert course record
-    $sql = "INSERT INTO courses (course_title, course_code, course_unit, requirements, department_id, semester_id, level_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssss", $course_title, $course_code, $course_unit, $requirement, $department_id, $semester_id, $level_id);
-    $stmt->execute();
+    // $sql = "INSERT INTO courses (course_title, course_code, course_unit, requirements, department_id, semester_id, level_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO courses (course_title, course_code, course_unit, requirements, department_id, semester_id, level_id) VALUES ( $course_title, $course_code, $course_unit, $requirement, $department_id, $semester_id, $level_id)";
+    $conn->query($sql); 
+    // $stmt = $conn->prepare($sql);
+    // $stmt->bind_param("sssssss", $course_title, $course_code, $course_unit, $requirement, $department_id, $semester_id, $level_id);
+    // $stmt->execute();
 
     // Redirect user to appropriate dashboard based on role
-    header("Location: ../../pages/admin/view-courses.php");
+    // header("Location: ../../pages/admin/view-courses.php");
   }
   exit();
 }

@@ -105,13 +105,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                         $sn++ ?>
                         <tr>
                           <td><?php echo $sn; ?></td>
-                          <td><?php echo $course['course_code']; ?></td>
-                          <td><?php echo $course['course_title']; ?></td>
-                          <td><?php echo $course['course_unit']; ?></td>
-                          <td><?php echo $course['level_name']; ?></td>
-                          <td><?php echo $course['department_name']; ?></td>
-                          <td><?php echo $course['semester_name']; ?></td>
-                          <td><?php echo $course['requirements']; ?></td>
+                          <td style="text-transform: uppercase;"><?php echo $course['course_code']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['course_title']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['course_unit']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['level_name']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['department_name']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['semester_name']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $course['requirements']; ?></td>
                         </tr>
                       <?php } ?>
                     </tbody>
