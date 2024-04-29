@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Caleb Result Managment System</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
     <link href="../../assets/vendor/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <link href="../../assets/vendor/chartist/css/chartist.min.css" rel="stylesheet">
     <link href="../../assets/css/style.css" rel="stylesheet">

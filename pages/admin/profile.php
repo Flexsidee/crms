@@ -43,6 +43,7 @@ if ($result->num_rows == 1) {
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
     <link href="../../assets/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
 
 </head>
 

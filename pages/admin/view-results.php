@@ -18,6 +18,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <link href="../../assets/css/style.css" rel="stylesheet">
   <!-- Datatable -->
   <link href="../../assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
 </head>
 
 <body>

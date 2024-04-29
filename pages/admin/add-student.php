@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caleb Result Managment System </title>
   <link href="../../assets/css/style.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
 </head>
 
 <body>
@@ -54,14 +55,14 @@
         <div class="row page-titles mx-0">
           <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-              <h4>Hi, Add Student!</h4>
-              <p class="mb-0">Your business dashboard template</p>
+              <h4>Add Student</h4>
+              <p class="mb-0">Fill the form below to add student</p>
             </div>
           </div>
           <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javascript:void(0)">App</a></li>
-              <li class="breadcrumb-item active"><a href="javascript:void(0)">Profile</a></li>
+              <li class="breadcrumb-item"><a href="./index.php">Home</a></li>
+              <li class="breadcrumb-item active"><a href="./add-student.php">Add Student</a></li>
             </ol>
           </div>
         </div>

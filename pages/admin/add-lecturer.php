@@ -19,6 +19,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caleb Result Managment System </title>
   <link href="../../assets/css/style.css" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
 </head>
 
 <body>
