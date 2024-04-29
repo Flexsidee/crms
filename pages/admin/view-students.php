@@ -93,6 +93,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                         <th>Gender</th>
                         <th>Department</th>
                         <th>Level</th>
+                        <th>Mode of Entry</th>
                         <th>Email</th>
                         <th>Phone</th>
                       </tr>
@@ -112,6 +113,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                           <td style="text-transform: capitalize;"><?php echo $student['gender_name']; ?></td>
                           <td style="text-transform: capitalize;"><?php echo $student['department_name']; ?></td>
                           <td style="text-transform: capitalize;"><?php echo $student['level_name']; ?></td>
+                          <td style="text-transform: capitalize;"><?php echo $student['mode_name']; ?></td>
                           <td style="text-transform: capitalize;"><?php echo $student['email']; ?></td>
                           <td style="text-transform: capitalize;"><?php echo $student['tel']; ?></td>
                         </tr>
@@ -125,6 +127,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                         <th>Gender</th>
                         <th>Department</th>
                         <th>Level</th>
+                        <th>Mode of Entry</th>
                         <th>Email</th>
                         <th>Phone</th>
                       </tr>
