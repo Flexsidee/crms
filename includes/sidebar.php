@@ -38,6 +38,25 @@
           <li><a href="./view-lecturers.php">Manage Lecturers</a></li>
         </ul>
       </li>
+      <?php
+      session_start();
+
+      //make only superadmin be able to view and add admins
+      if ($_SESSION['role'] == 1) {
+        echo '   
+        <li>
+          <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+            <i class="icon icon-single-04"></i>
+            <span class="nav-text">Admins</span>
+          </a>
+          <ul aria-expanded="false">
+            <li><a href="./add-admin.php">Add Admin</a></li>
+            <li><a href="./view-admins.php">Manage Admins</a></li>
+          </ul>
+        </li>
+        ';
+      }
+      ?>
 
       <li class="nav-label">Results</li>
       <li>
