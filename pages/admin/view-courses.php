@@ -178,7 +178,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
     echo
     '<script>
       window.addEventListener("load", function() {
-        toastr.success("The course was added successfully", "Top Right", {
+        toastr.success("The course was added successfully", "Course Added", {
           positionClass: "toast-top-right",
           timeOut: 5e3,
           closeButton: !0,

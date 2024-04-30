@@ -17,9 +17,13 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caleb Result Managment System </title>
   <link href="../../assets/css/style.css" rel="stylesheet">
+
   <!-- Datatable -->
   <link href="../../assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
+
+  <!-- Toastr -->
+  <link rel="stylesheet" href="../../assets/vendor/toastr/css/toastr.min.css">
 </head>
 
 <body>
@@ -169,6 +173,36 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <!-- Datatable -->
   <script src="../../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
   <script src="../../assets/js/plugins-init/datatables.init.js"></script>
+
+  <!-- Toastr -->
+  <script src="../../assets/vendor/toastr/js/toastr.min.js"></script>
+
+  <?php
+  if (isset($_GET['success']) && $_GET['success'] == 1) {
+    echo
+    '<script>
+      window.addEventListener("load", function() {
+        toastr.success("The student was added successfully", "Student Added", {
+          positionClass: "toast-top-right",
+          timeOut: 5e3,
+          closeButton: !0,
+          debug: !1,
+          newestOnTop: !0,
+          progressBar: !0,
+          preventDuplicates: !0,
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut",
+          tapToDismiss: !1
+        })
+      });
+    </script>';
+  } ?>
 </body>
 
 </html>

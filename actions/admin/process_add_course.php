@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($course_title) || empty($course_code) || empty($course_unit) || empty($semester_id) || empty($level_id) || empty($department_id) || empty($requirement)) {
     header("Location: ../../pages/admin/add-course.php?error=Input%20field%20can%20not%20be%20empty");
   } else {
-
     // Prepare SQL statement to insert course record
     $sql = "INSERT INTO courses (course_title, course_code, course_unit, requirements, department_id, semester_id, level_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
+
     if ($stmt) {
       // Bind parameters
       $stmt->bind_param("ssssiii", $course_title, $course_code, $course_unit, $requirement, $department_id, $semester_id, $level_id);

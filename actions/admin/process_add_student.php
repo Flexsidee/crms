@@ -21,15 +21,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $mode_of_entry = test_input($_POST['mode_of_entry']);
   $email = test_input($_POST['email']);
   $tel = test_input($_POST['tel']);
+  $role_id = 4;
+
   // Check if course details are provided
   if (empty($matic_no) || empty($title_id) || empty($surname) || empty($firstname) || empty($othername) || empty($gender_id) || empty($level_id) || empty($mode_of_entry) || empty($email) || empty($tel)) {
     header("Location: ../../pages/admin/add-course.php?error=Input%20field%20can%20not%20be%20empty");
   } else {
-    // Prepare SQL statement to insert lecturer record
+    // Prepare SQL statement to insert course record
+    $sql = "INSERT INTO students (matric_no, user_id, role_id, surname, firstname, othername, gender_id, email, tel, department_id, level_id, mode_of_entry) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
 
+    if ($stmt) {
+      // Bind parameters
+      $stmt->bind_param("ssssiii", $matic_no, 1, $role_id, $surname, $firstname, $othername, $gender_id, $email, $tel, $department_id, $level_id, $mode_of_entry);
 
-    // Redirect user to appropriate dashboard based on role
-    // header("Location: ../../pages/admin/view-lecturers.php");
+      // Execute the statement
+      $stmt->execute();
+
+      // Check for errors
+      if ($stmt->error) {
+        echo "Error: " . $stmt->error;
+      } else {
+        // Redirect user to appropriate dashboard based on role
+        header("Location: ../../pages/admin/view-students.php?success=1");
+      }
+
+      // Close the statement
+      $stmt->close();
+    } else {
+      echo "Error preparing statement: " . $conn->error;
+    }
   }
   exit();
 }
