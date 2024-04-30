@@ -1,12 +1,52 @@
 <?php
 session_start();
-
-//check if student is logged in
+//check if student is logged in 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   //Redirect to login page if not logged in
   header("Location: ../../index.php?error=You%20need%20to%20login%20to%20acces%20this%20website");
   exit();
 }
+
+
+// include_once('../../configs/db_connection.php');
+// // Fetch data from the database
+// $query = "SELECT courses.course_id, courses.course_code, courses.course_unit,
+// results.student_id, results.ca, results.exam, results.total, results.grade
+// FROM courses
+// INNER JOIN results ON courses.course_id = results.course_id";
+
+// $result = mysqli_query($conn, $query);
+
+// // Store results in an array
+// $data = array();
+// while ($row = mysqli_fetch_assoc($result)) {
+// $course_id = $row['course_id'];
+// if (!isset($data[$course_id])) {
+// $data[$course_id] = array(
+// 'course_id' => $row['course_id'],
+// 'course_code' => $row['course_code'],
+// 'course_unit' => $row['course_unit'],
+// 'results' => array()
+// );
+// }
+// $data[$course_id]['results'][] = array(
+// 'student_id' => $row['student_id'],
+// 'ca' => $row['ca'],
+// 'exam' => $row['exam'],
+// 'total' => $row['total'],
+// 'grade' => $row['grade']
+// );
+// }
+
+// Convert data to JSON
+// $json_data = json_encode(array_values($data), JSON_PRETTY_PRINT);
+
+
+//echo '<script>
+//   console.log(' . $json_data . ')
+// </script>'; 
+// // Close database connection
+// mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +56,31 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Caleb Result Managment System </title>
   <link href="../../assets/css/style.css" rel="stylesheet">
-  <!-- Datatable -->
-  <link href="../../assets/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    th {
+      color: black;
+      font-weight: bold;
+    }
+
+    td {
+      text-align: center;
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
@@ -82,52 +144,332 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
           <div class="col-12">
             <div class="card">
               <div class="card-body">
+                <!-- <div> -->
                 <div class="table-responsive">
-                  <table id="example" class="display" style="min-width: 845px">
+                  <!-- <table id="example" class="display" style="min-width: 845px; font-size: 70%;"> -->
+                  <table class="display" style="min-width: 845px; border: 1px black solid">
                     <thead>
                       <tr>
-                        <th>S/N</th>
-                        <th>Course Code</th>
-                        <th>Course Title</th>
-                        <th>Course Unit</th>
-                        <th>Level</th>
-                        <th>Department</th>
-                        <th>Semester</th>
-                        <th>Status</th>
+                        <th rowspan="3">S/N</th>
+                        <th rowspan="3">Matric No</th>
+                        <th rowspan="3">Full Name</th>
+                        <th rowspan="3">Mode of Entry</th>
+                        <th colspan="21" style="text-align: center;">Scores in Courses Taken</th>
+                        <th colspan="5" style="text-align: center;">Summary Current Semester</th>
+                        <th colspan="6" style="text-align: center;">Summary All Semester</th>
+                      </tr>
+                      <tr>
+                        <th colspan="3"> C <br>CSC 101 <br>3</th>
+                        <th colspan="3"> C <br>GST 101 <br>3</th>
+                        <th colspan="3"> C <br>GST 103 <br>3</th>
+                        <th colspan="3"> C <br>MTH 101 <br>3</th>
+                        <th colspan="3"> C <br>PHY 101 <br>3</th>
+                        <th colspan="3"> C <br>PHY 191 <br>3</th>
+                        <th colspan="3"> C <br>CHM 101 <br>3</th>
+                        <th rowspan="2">TUT</th>
+                        <th rowspan="2">TUP</th>
+                        <th rowspan="2">WGA</th>
+                        <th rowspan="2">GPA</th>
+                        <th rowspan="2">UO/S</th>
+                        <th rowspan="2">TUT</th>
+                        <th rowspan="2">TUP</th>
+                        <th rowspan="2">WGA</th>
+                        <th rowspan="2">GPA</th>
+                        <th rowspan="2">UO/S</th>
+                        <th rowspan="2">STDN</th>
+                      </tr>
+                      <tr>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
+                        <th>SC</th>
+                        <th>LG</th>
+                        <th>GP</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <?php
-                      include_once('../../configs/db_connection.php');
-                      $sql = "SELECT * FROM courses_view order by course_code asc";
-                      $result = $conn->query($sql);
-                      $sn = 0;
-                      while ($course = $result->fetch_assoc()) {
-                        $sn++ ?>
-                        <tr>
-                          <td><?php echo $sn; ?></td>
-                          <td><?php echo $course['course_code']; ?></td>
-                          <td><?php echo $course['course_title']; ?></td>
-                          <td><?php echo $course['course_unit']; ?></td>
-                          <td><?php echo $course['level_name']; ?></td>
-                          <td><?php echo $course['department_name']; ?></td>
-                          <td><?php echo $course['semester_name']; ?></td>
-                          <td><?php echo $course['requirements']; ?></td>
-                        </tr>
-                      <?php } ?>
-                    </tbody>
-                    <tfoot>
                       <tr>
-                        <th>S/N</th>
-                        <th>Course Code</th>
-                        <th>Course Title</th>
-                        <th>Course Unit</th>
-                        <th>Level</th>
-                        <th>Department</th>
-                        <th>Semester</th>
-                        <th>Status</th>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
                       </tr>
-                    </tfoot>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>20/374</td>
+                        <td>Isaac D.O</td>
+                        <td>DE</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>60</td>
+                        <td>4</td>
+                        <td>12</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>21</td>
+                        <td>21</td>
+                        <td>84</td>
+                        <td style="font-weight: bold;">4.0</td>
+                        <td>0</td>
+                        <td>G</td>
+                      </tr>
+                    </tbody>
                   </table>
                 </div>
               </div>
@@ -162,9 +504,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   <script src="../../assets/js/quixnav-init.js"></script>
   <script src="../../assets/js/custom.min.js"></script>
 
-  <!-- Datatable -->
-  <script src="../../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-  <script src="../../assets/js/plugins-init/datatables.init.js"></script>
 </body>
 
 </html>
