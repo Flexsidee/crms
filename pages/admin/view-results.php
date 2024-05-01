@@ -7,45 +7,55 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
   exit();
 }
 
+//db connection
+include_once('../../configs/db_connection.php');
 
-// include_once('../../configs/db_connection.php');
-// // Fetch data from the database
-// $query = "SELECT courses.course_id, courses.course_code, courses.course_unit,
-// results.student_id, results.ca, results.exam, results.total, results.grade
-// FROM courses
-// INNER JOIN results ON courses.course_id = results.course_id";
+$semester_id = $level_id = $department_id = $session_id = "";
+// $semester_id = $_POST['semester'];
+// $level_id = $_POST['level'];
+// $department_id = $_POST['department'];
+// $session_id = $_POST['session'];
+$session_id = 4;
+$semester_id = 1;
+$level_id = 4;
+$department_id = 5;
 
-// $result = mysqli_query($conn, $query);
+// Fetch data from the database
+$query = "SELECT * FROM courses INNER JOIN results ON courses.course_id = results.course_id where results.session_id=$session_id and courses.semester_id=$semester_id and courses.level_id=$level_id and courses.department_id=$department_id";
 
-// // Store results in an array
-// $data = array();
-// while ($row = mysqli_fetch_assoc($result)) {
-// $course_id = $row['course_id'];
-// if (!isset($data[$course_id])) {
-// $data[$course_id] = array(
-// 'course_id' => $row['course_id'],
-// 'course_code' => $row['course_code'],
-// 'course_unit' => $row['course_unit'],
-// 'results' => array()
-// );
-// }
-// $data[$course_id]['results'][] = array(
-// 'student_id' => $row['student_id'],
-// 'ca' => $row['ca'],
-// 'exam' => $row['exam'],
-// 'total' => $row['total'],
-// 'grade' => $row['grade']
-// );
-// }
+$result = mysqli_query($conn, $query);
+
+// Store results in an array
+$data = array();
+while ($row = mysqli_fetch_assoc($result)) {
+  $course_id = $row['course_id'];
+  if (!isset($data[$course_id])) {
+    $data[$course_id] = array(
+      'course_id' => $row['course_id'],
+      'course_code' => $row['course_code'],
+      'course_unit' => $row['course_unit'],
+      'results' => array()
+    );
+  }
+  $data[$course_id]['results'][] = array(
+    'student_id' => $row['student_id'],
+    'ca' => $row['ca'],
+    'exam' => $row['exam'],
+    'total' => $row['total'],
+    'grade' => $row['grade']
+  );
+}
+
+$course_length = count($data);
 
 // Convert data to JSON
-// $json_data = json_encode(array_values($data), JSON_PRETTY_PRINT);
+$json_data = json_encode(array_values($data), JSON_PRETTY_PRINT);
 
 
-//echo '<script>
-//   console.log(' . $json_data . ')
-// </script>'; 
-// // Close database connection
+echo '<script>
+  console.log(' . $json_data . ')
+</script>';
+// Close database connection
 // mysqli_close($connection);
 ?>
 <!DOCTYPE html>
@@ -144,9 +154,59 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <!-- <div> -->
-                <div class="table-responsive">
-                  <!-- <table id="example" class="display" style="min-width: 845px; font-size: 70%;"> -->
+                <form action="" method="post">
+                  <div class="form-row">
+                    <div class="form-group
+                    col-md-3">
+                      <label for="session">Select Session</label>
+                      <select id="session" class="form-control" name="session">
+                        <option selected>Select Session...</option>
+                        <?php
+                        $sql = "SELECT * FROM session order by session_name asc";
+                        $result = $conn->query($sql);
+                        while ($session = $result->fetch_assoc()) {
+                          echo "<option value='" . $session['session_id'] . "'>" . $session['session_name'] . "</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group
+                    col-md-3">
+                      <label for="semester">Session Semester...</label>
+                      <select id="semester" class="form-control" name="semester">
+                        <option value="">Select Semester</option>
+                        <option value="1">First Semester</option>
+                        <option value="2">Second Semester</option>
+                      </select>
+                    </div>
+                    <div class="form-group
+                    col-md-3">
+                      <label for="department">Select Department...</label>
+                      <select id="department" class="form-control" name="department">
+                        <option value="">Select Department</option>
+                        <?php
+                        $sql = "SELECT * FROM departments order by department_name asc";
+                        $result = $conn->query($sql);
+                        while ($department = $result->fetch_assoc()) {
+                          echo "<option value='" . $department['department_id'] . "'>" . $department['department_name'] . "</option>";
+                        }
+                        ?>
+                      </select>
+                    </div>
+                    <div class="form-group
+                    col-md-3">
+                      <label for="level">Select Level...</label>
+                      <select id="level" class="form-control" name="level">
+                        <option value="">Select Level</option>
+                        <option value="1">100</option>
+                        <option value="2">200</option>
+                        <option value="3">300</option>
+                        <option value="4">400</option>
+                      </select>
+                    </div>
+                  </div>
+                </form>
+                <div class="table-responsive mt-3">
                   <table class="display" style="min-width: 845px; border: 1px black solid">
                     <thead>
                       <tr>
@@ -154,56 +214,72 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                         <th rowspan="3">Matric No</th>
                         <th rowspan="3">Full Name</th>
                         <th rowspan="3">Mode of Entry</th>
-                        <th colspan="21" style="text-align: center;">Scores in Courses Taken</th>
+                        <th colspan="<?php echo $course_length * 3 ?>" style="text-align: center;">Scores in Courses Taken</th>
                         <th colspan="5" style="text-align: center;">Summary Current Semester</th>
-                        <th colspan="6" style="text-align: center;">Summary All Semester</th>
+                        <!-- <th colspan="6" style="text-align: center;">Summary All Semester</th>÷ -->
                       </tr>
                       <tr>
-                        <th colspan="3"> C <br>CSC 101 <br>3</th>
-                        <th colspan="3"> C <br>GST 101 <br>3</th>
-                        <th colspan="3"> C <br>GST 103 <br>3</th>
-                        <th colspan="3"> C <br>MTH 101 <br>3</th>
-                        <th colspan="3"> C <br>PHY 101 <br>3</th>
-                        <th colspan="3"> C <br>PHY 191 <br>3</th>
-                        <th colspan="3"> C <br>CHM 101 <br>3</th>
+                        <?php foreach ($data as $course) {
+                          echo "<th colspan='3'>" . $course['course_unit'] . "<br>" . $course['course_code'] . "<br>" . $course['course_unit'] . "</th>";
+                        } ?>
                         <th rowspan="2">TUT</th>
                         <th rowspan="2">TUP</th>
                         <th rowspan="2">WGA</th>
                         <th rowspan="2">GPA</th>
                         <th rowspan="2">UO/S</th>
-                        <th rowspan="2">TUT</th>
+                        <!-- <th rowspan="2">TUT</th>
                         <th rowspan="2">TUP</th>
                         <th rowspan="2">WGA</th>
                         <th rowspan="2">GPA</th>
                         <th rowspan="2">UO/S</th>
-                        <th rowspan="2">STDN</th>
+                        <th rowspan="2">STDN</th> -->
                       </tr>
                       <tr>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
-                        <th>SC</th>
-                        <th>LG</th>
-                        <th>GP</th>
+                        <?php foreach ($data as $course) {
+                          echo "<th>CA</th>";
+                          echo "<th>EX</th>";
+                          echo "<th>TOTAL</th>";
+                        } ?>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <?php
+                      $sql = "SELECT * FROM students WHERE  level_id=$level_id and department_id=$department_id";
+                      $result = $conn->query($sql);
+                      $sn = 1;
+                      while ($student = $result->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<td>" . $sn++ . "</td>";
+                        echo "<td>" . $student['matric_no'] . "</td>";
+                        echo "<td>" . $student['surname'] . " " . $student['first_name'] . " " . $student['other_name'] . "</td>";
+                        echo "<td>" . $student['mode_of_entry'] . "</td>";
+                        // Loop through courses
+                        foreach ($data as $course) {
+                          // Check if the student has results for this course
+                          $found_result = false; // Flag to track if result is found for the current course
+                          foreach ($course['results'] as $result) {
+                            if ($result['student_id'] == $student['student_id']) {
+                              // Student has results for this course
+                              $found_result = true;
+                              echo "<td>" . $result['ca'] . "</td>";
+                              echo "<td>" . $result['exam'] . "</td>";
+                              echo "<td>" . $result['total'] . "</td>";
+                              break; // Stop searching for results once found
+                            }
+                          }
+                          // If no result is found for the current course, display N/A
+                          if (!$found_result) {
+                            echo "<td>N/A</td>";
+                            echo "<td>N/A</td>";
+                            echo "<td>N/A</td>";
+                          }
+                        }
+                        echo "<td><!-- Summary columns for the current semester --></td>";
+                        echo "</tr>";
+                      }
+                      ?>
+
+                      <!-- <tr>
                         <td>1</td>
                         <td>20/374</td>
                         <td>Isaac D.O</td>
@@ -240,235 +316,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
                         <td style="font-weight: bold;">4.0</td>
                         <td>0</td>
                         <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>20/374</td>
-                        <td>Isaac D.O</td>
-                        <td>DE</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>60</td>
-                        <td>4</td>
-                        <td>12</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>21</td>
-                        <td>21</td>
-                        <td>84</td>
-                        <td style="font-weight: bold;">4.0</td>
-                        <td>0</td>
-                        <td>G</td>
-                      </tr>
+                      </tr> -->
+
                     </tbody>
                   </table>
                 </div>
