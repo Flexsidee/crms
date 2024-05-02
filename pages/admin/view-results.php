@@ -18,45 +18,16 @@ $semester_id = $level_id = $department_id = $session_id = "";
 $session_id = 4;
 $semester_id = 1;
 $level_id = 4;
-$department_id = 5;
+$department_id = 1;
 
-// Fetch data from the database
-$query = "SELECT * FROM courses INNER JOIN results ON courses.course_id = results.course_id where results.session_id=$session_id and courses.semester_id=$semester_id and courses.level_id=$level_id and courses.department_id=$department_id";
+$resultSql = "SELECT t1.*, GROUP_CONCAT(t2.course_id) as course_ids, GROUP_CONCAT(t1.total) as scores FROM `results` as t1 left join courses as t2 on t1.course_id=t2.course_id where t1.total is not NULL and t1.session_id=$session_id and t2.semester_id=$semester_id and t2.level_id=$level_id and t2.department_id=$department_id group by t1.student_id";
+$studentsResultData = $conn->query($resultSql);
 
-$result = mysqli_query($conn, $query);
+$coursesSql = "SELECT * FROM courses where semester_id=$semester_id and level_id=$level_id and department_id=$department_id";
+$coursesResult = $conn->query($coursesSql);
+$coursLength = mysqli_num_rows($coursesResult);
+$courseIdArray = array();
 
-// Store results in an array
-$data = array();
-while ($row = mysqli_fetch_assoc($result)) {
-  $course_id = $row['course_id'];
-  if (!isset($data[$course_id])) {
-    $data[$course_id] = array(
-      'course_id' => $row['course_id'],
-      'course_code' => $row['course_code'],
-      'course_unit' => $row['course_unit'],
-      'results' => array()
-    );
-  }
-  $data[$course_id]['results'][] = array(
-    'student_id' => $row['student_id'],
-    'ca' => $row['ca'],
-    'exam' => $row['exam'],
-    'total' => $row['total'],
-    'grade' => $row['grade']
-  );
-}
-
-$course_length = count($data);
-
-// Convert data to JSON
-$json_data = json_encode(array_values($data), JSON_PRETTY_PRINT);
-
-
-echo '<script>
-  console.log(' . $json_data . ')
-</script>';
-// Close database connection
-// mysqli_close($connection);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -214,14 +185,18 @@ echo '<script>
                         <th rowspan="3">Matric No</th>
                         <th rowspan="3">Full Name</th>
                         <th rowspan="3">Mode of Entry</th>
-                        <th colspan="<?php echo $course_length * 3 ?>" style="text-align: center;">Scores in Courses Taken</th>
+                        <th colspan="<?php echo $coursLength ?>" style="text-align: center;">Scores in Courses Taken</th>
                         <th colspan="5" style="text-align: center;">Summary Current Semester</th>
                         <!-- <th colspan="6" style="text-align: center;">Summary All Semester</th>÷ -->
                       </tr>
                       <tr>
-                        <?php foreach ($data as $course) {
-                          echo "<th colspan='3'>" . $course['course_unit'] . "<br>" . $course['course_code'] . "<br>" . $course['course_unit'] . "</th>";
-                        } ?>
+                        <?php
+                        while ($course = $coursesResult->fetch_assoc()) {
+                          $courseIdArray[] = $course['course_id'];
+                          // echo "<th>" . $course['course_unit'] . "<br>" . $course['course_code'] . "<br>" . $course['course_unit'] . "</th>";
+                          echo "<th>" . $course['course_unit'] . "<br>" . $course['course_id'] . "<br>" . $course['course_unit'] . "</th>";
+                        }
+                        ?>
                         <th rowspan="2">TUT</th>
                         <th rowspan="2">TUP</th>
                         <th rowspan="2">WGA</th>
@@ -247,35 +222,25 @@ echo '<script>
                       $sql = "SELECT * FROM students WHERE  level_id=$level_id and department_id=$department_id";
                       $result = $conn->query($sql);
                       $sn = 1;
-                      while ($student = $result->fetch_assoc()) {
+                      while ($student = $studentsResultData->fetch_assoc()) {
                         echo "<tr>";
                         echo "<td>" . $sn++ . "</td>";
-                        echo "<td>" . $student['matric_no'] . "</td>";
-                        echo "<td>" . $student['surname'] . " " . $student['first_name'] . " " . $student['other_name'] . "</td>";
-                        echo "<td>" . $student['mode_of_entry'] . "</td>";
-                        // Loop through courses
-                        foreach ($data as $course) {
-                          // Check if the student has results for this course
-                          $found_result = false; // Flag to track if result is found for the current course
-                          foreach ($course['results'] as $result) {
-                            if ($result['student_id'] == $student['student_id']) {
-                              // Student has results for this course
-                              $found_result = true;
-                              echo "<td>" . $result['ca'] . "</td>";
-                              echo "<td>" . $result['exam'] . "</td>";
-                              echo "<td>" . $result['total'] . "</td>";
-                              break; // Stop searching for results once found
-                            }
-                          }
-                          // If no result is found for the current course, display N/A
-                          if (!$found_result) {
-                            echo "<td>N/A</td>";
-                            echo "<td>N/A</td>";
-                            echo "<td>N/A</td>";
+                        echo "<td>" . $student['student_id'] . "</td>";
+                        echo "<td>" . $student['student_id'] . " " . $student['student_id'] . " " . $student['student_id'] . "</td>";
+                        echo "<td>" . $student['student_id'] . "</td>";
+                        // echo "<td>" . $student['matric_no'] . "</td>";
+                        // echo "<td>" . $student['surname'] . " " . $student['first_name'] . " " . $student['other_name'] . "</td>";
+                        // echo "<td>" . $student['mode_of_entry'] . "</td>";
+                        $coursesExplode = explode(",", $student['course_ids']);
+                        $scoresExplode = explode(",", $student['scores']);
+                        foreach ($courseIdArray as $courseCode) {
+                          $key = array_search($courseCode, $coursesExplode);
+                          if ($key || $key === 0) {
+                            echo "<td>" . $scoresExplode[$key] . "</td>";
+                          } else {
+                            echo "<td> - </td>";
                           }
                         }
-                        echo "<td><!-- Summary columns for the current semester --></td>";
-                        echo "</tr>";
                       }
                       ?>
 
