@@ -1,8 +1,7 @@
 <?php
 session_start();
-//check if student is logged in 
+//check if user is logged in and redirect to login page if not logged in
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] > 2) {
-  //Redirect to login page if not logged in
   header("Location: ../../index.php?error=You%20need%20to%20login%20to%20acces%20this%20website");
   exit();
 }
@@ -18,10 +17,12 @@ $semester_id = $level_id = $department_id = $session_id = "";
 $session_id = 4;
 $semester_id = 1;
 $level_id = 4;
-$department_id = 1;
+$department_id = 5;
 
 $resultSql = "SELECT t1.*, GROUP_CONCAT(t2.course_id) as course_ids, GROUP_CONCAT(t1.total) as scores FROM `results` as t1 left join courses as t2 on t1.course_id=t2.course_id where t1.total is not NULL and t1.session_id=$session_id and t2.semester_id=$semester_id and t2.level_id=$level_id and t2.department_id=$department_id group by t1.student_id";
+// $resultSql = "SELECT * FROM results_view where session_id=$session_id and semester_id=$semester_id and level_id=$level_id and department_id=$department_id";
 $studentsResultData = $conn->query($resultSql);
+// echo "<script>console.log('" . $resultSql . "')</script>";
 
 $coursesSql = "SELECT * FROM courses where semester_id=$semester_id and level_id=$level_id and department_id=$department_id";
 $coursesResult = $conn->query($coursesSql);
@@ -194,7 +195,7 @@ $courseIdArray = array();
                         while ($course = $coursesResult->fetch_assoc()) {
                           $courseIdArray[] = $course['course_id'];
                           // echo "<th>" . $course['course_unit'] . "<br>" . $course['course_code'] . "<br>" . $course['course_unit'] . "</th>";
-                          echo "<th>" . $course['course_unit'] . "<br>" . $course['course_id'] . "<br>" . $course['course_unit'] . "</th>";
+                          echo "<th style='text-transofrm: uppercase'>" . $course['course_unit'] . "<br>" . $course['course_code'] . "<br>" . $course['course_unit'] . "</th>";
                         }
                         ?>
                         <th rowspan="2">TUT</th>
@@ -223,10 +224,13 @@ $courseIdArray = array();
                       $result = $conn->query($sql);
                       $sn = 1;
                       while ($student = $studentsResultData->fetch_assoc()) {
+                        // $sql = "SELECT * FROM students_view where student_id=".$student['student_id'];
+                        
+                        
                         echo "<tr>";
                         echo "<td>" . $sn++ . "</td>";
-                        echo "<td>" . $student['student_id'] . "</td>";
-                        echo "<td>" . $student['student_id'] . " " . $student['student_id'] . " " . $student['student_id'] . "</td>";
+                        echo "<td>" . $student['matric_no'] . "</td>";
+                        echo "<td>" . $student['surname'] . " " . $student['firstname'] . " " . $student['othername'] . "</td>";
                         echo "<td>" . $student['student_id'] . "</td>";
                         // echo "<td>" . $student['matric_no'] . "</td>";
                         // echo "<td>" . $student['surname'] . " " . $student['first_name'] . " " . $student['other_name'] . "</td>";
