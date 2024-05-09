@@ -18,7 +18,6 @@
           <span class="nav-text"> Result</span>
         </a>
         <ul aria-expanded="false">
-          <!-- <li><a href="#">Add Results</a></li> -->
           <li><a href="#./view-results.php">View Result</a></li>
         </ul>
       </li>

@@ -3,6 +3,12 @@
     <ul class="metismenu" id="menu">
       <li class="nav-label first">Main Menu</li>
       <li>
+        <a href="./index.php" aria-expanded="false">
+          <i class="icon icon-app-store"></i>
+          <span class="nav-text">Dashboard</span>
+        </a>
+      </li>
+      <li>
         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
           <i class="icon icon-single-copy-06"></i>
           <span class="nav-text">Courses</span>
