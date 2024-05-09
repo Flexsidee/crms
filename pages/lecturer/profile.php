@@ -2,7 +2,7 @@
 session_start();
 
 //check if student is logged in
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 4) {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 3) {
   //Redirect to login page if not logged in
   header("Location: ../../index.php?error=You%20need%20to%20login%20to%20acces%20this%20website");
   exit();
@@ -82,7 +82,7 @@ include_once('../../configs/db_connection.php');
     <!--**********************************
             Sidebar start
         ***********************************-->
-    <?php include_once('../../includes/sidebar_student.php'); ?>
+    <?php include_once('../../includes/sidebar_lecturer.php'); ?>
     <!--**********************************
             Sidebar end
         ***********************************-->
