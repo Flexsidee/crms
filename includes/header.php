@@ -1,30 +1,30 @@
 <?php
 session_start();
-include_once('../../includes/connection.php');
+include_once('../configs/db_connection.php');
 
-$username = $_SESSION['username'];
-$user_id = $_SESSION['user_id'];
-$role_id = $_SESSION['role'];
-$sql = "";
+// $username = $_SESSION['username'];
+// $user_id = $_SESSION['user_id'];
+// $role_id = $_SESSION['role'];
+// $sql = "";
 
-if ($role_id == 4) {
-  $sql = "SELECT * FROM students WHERE user_id = ?";
-} else if ($role_id == 3) {
-  $sql = "SELECT * FROM lecturers WHERE user_id = ?";
-} else {
-  $sql = "SELECT * FROM admins WHERE user_id = ?";
-}
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
+// if ($role_id == 4) {
+//   $sql = "SELECT * FROM students WHERE user_id = ?";
+// } else if ($role_id == 3) {
+//   $sql = "SELECT * FROM lecturers WHERE user_id = ?";
+// } else {
+//   $sql = "SELECT * FROM admins WHERE user_id = ?";
+// }
+// $stmt = $conn->prepare($sql);
+// $stmt->bind_param("s", $user_id);
+// $stmt->execute();
+// $result = $stmt->get_result();
 
-if ($result->num_rows == 1) {
-  $name = $result->fetch_assoc();
-  $firstname = $name['firstname'];
-} else {
-  $firstname = "User";
-}
+// if ($result->num_rows == 1) {
+//   $name = $result->fetch_assoc();
+//   $firstname = $name['firstname'];
+// } else {
+//   $firstname = "User";
+// }
 
 
 ?>
@@ -36,7 +36,8 @@ if ($result->num_rows == 1) {
         <div class="header-left mt-3">
           <h4 style=" text-transform: capitalize;	">
             Hi
-            <?php echo $firstname; ?>
+            <?php //echo $firstname; 
+            ?>
           </h4>
         </div>
 

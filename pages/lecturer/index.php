@@ -41,7 +41,7 @@ $conn->close();
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Caleb Result Managment System</title>
+  <title>Caleb Result Managment System --Lecturer</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/caleb.png">
   <link href="../../assets/css/style.css" rel="stylesheet">
@@ -75,7 +75,8 @@ $conn->close();
     <!--**********************************
             Header start
         ***********************************-->
-    <?php include_once('../../includes/header.php'); ?>
+    <?php include_once('../../includes/header.php');
+    ?>
     <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -115,7 +116,8 @@ $conn->close();
                 </div>
                 <div class="stat-content d-inline-block">
                   <div class="stat-text">Total Courses</div>
-                  <div class="stat-digit"><?php echo $counts['courses']; ?></div>
+                  <div class="stat-digit"><?php echo $counts['courses'];
+                                          ?></div>
                 </div>
               </div>
             </div>
@@ -128,7 +130,8 @@ $conn->close();
                 </div>
                 <div class="stat-content d-inline-block">
                   <div class="stat-text">Total Students</div>
-                  <div class="stat-digit"><?php echo $counts['students']; ?></div>
+                  <div class="stat-digit"><?php echo $counts['students'];
+                                          ?></div>
                 </div>
               </div>
             </div>
@@ -141,7 +144,8 @@ $conn->close();
                 </div>
                 <div class="stat-content d-inline-block">
                   <div class="stat-text">Total Results Uploaded</div>
-                  <div class="stat-digit"><?php echo $counts['lecturers']; ?></div>
+                  <div class="stat-digit"><?php echo $counts['lecturers'];
+                                          ?></div>
                 </div>
               </div>
             </div>

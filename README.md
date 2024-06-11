@@ -1,6 +1,6 @@
 # Result Portal
 
-[![License] caleb university hold partial licence to this intellectual work, always remember
+Caleb university hold partial licence to this intellectual work, always remember
 
 ## Overview
 
@@ -32,6 +32,18 @@ This Result Portal is a web-based application developed as a part of my 400-leve
 git clone https://github.com/your-username/result-portal.git
 cd result-portal
 ```
+
+2. Import the database in your phpmyadmin.
+
+- Create a database in phpmyadmin called `crms`
+- Then import the database found in the 'database folder' of this project
+
+3. Below are example login details for each profile
+
+- Student:
+- Lecturer:
+- Admin:
+- Superadmin:
 
 ## Contributing
 

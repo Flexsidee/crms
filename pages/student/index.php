@@ -11,11 +11,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 4) {
 // Include the database connection file
 include_once('../../configs/db_connection.php');
 
-// Get the lecturer's details from the session
-$lecturerId = $_SESSION['user_id'];
+// Get the student's details from the session
+$studentId = $_SESSION['user_id'];
 $sql = "SELECT * FROM students_view WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $lecturerId);
+$stmt->bind_param("s", $studentId);
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -102,7 +102,8 @@ if ($result->num_rows == 1) {
         <!-- <div class="row page-titles mx-0">
           <div class="col-sm-6 p-md-0">
             <div class="welcome-text">
-              <h4>Hi <?php // echo $studentName ?>, welcome!</h4>
+              <h4>Hi <?php // echo $studentName 
+                      ?>, welcome!</h4>
               <p class="mb-0">Your business dashboard template</p>
             </div>
           </div>
